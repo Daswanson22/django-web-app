@@ -1,8 +1,10 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 # Acts as a controller
 
 def index(request):
-    return HttpResponse("<h1> Marketing page </h1>")
-
-def pricing(request):
-    return HttpResponse("Pricing page")
+    content = {
+        "title": "Home",
+        "content": "Welcome to the homepage"
+    }
+    return render(request, "marketing/index.html", content)
