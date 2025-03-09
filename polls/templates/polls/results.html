@@ -1,3 +1,4 @@
+<a href="{% url 'polls:index' %}">Home</a>
 <h1>{{ question.question_text }}</h1>
 
 <ul>
@@ -6,4 +7,4 @@
     {% endfor %}
 </ul>
 
-<a href="{% url 'detail' question.id%}">Vote Again?</a>
+<a href="{% url 'polls:detail' question.id%}"><button>Vote Again?</button></a>
