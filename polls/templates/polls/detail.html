@@ -1,5 +1,22 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}?{% now 'U' %}">
+
 <a href="{% url 'polls:index' %}">Home</a>
 
+<h1>Vote</h1>
+<p>
+    <span>Share poll link: </span>
+    <a id="poll-link" href="{{ request.scheme }}://{{ request.get_host }}{% url 'polls:detail' question.id %}">
+        {{ request.scheme }}://{{ request.get_host }}{% url 'polls:detail' question.id %}
+    </a>
+    <button onclick="copyPollLink()" style="border: none; background: none; cursor: pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M10 4a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h7zm-7 1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H3z"/>
+            <path d="M5 0a2 2 0 0 0-2 2v1h1V2a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1v1h1a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+        </svg>
+    </button>
+</p>
 <form action="{% url 'polls:vote' question.id %}" method="post">
     {% csrf_token %}
     <fieldset>
@@ -11,4 +28,16 @@
         {% endfor %}
     </fieldset>
     <input type="submit" value="Vote">
-    </form>
+</form>
+
+<script>
+    function copyPollLink() {
+        var pollLink = document.getElementById("poll-link").href;
+        navigator.clipboard.writeText(pollLink).then(function() {
+            alert("Poll link copied to clipboard!");
+        }).catch(function(err) {
+            console.error("Failed to copy: ", err);
+        });
+    }
+</script>
+        

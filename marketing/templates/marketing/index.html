@@ -1,4 +1,9 @@
-<div>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'marketing/style.css' %}?{% now 'U' %}">
+
+<body>
     <h1>{{ title }}</h1>
+    <p>{{ content }}</p>
     <a href="{%  url 'polls:index' %}">View Polls</a>
-</div>
+</body>

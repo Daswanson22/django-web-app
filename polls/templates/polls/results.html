@@ -1,5 +1,10 @@
-<a href="{% url 'polls:index' %}">Home</a>
-<h1>{{ question.question_text }}</h1>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/results.css' %}?{% now 'U' %}">
+
+<a href="{% url 'polls:index' %}">Back to polls</a>
+<h1>Results</h1>
+<h2>Question: {{ question.question_text }}</h2>
 
 <ul>
     {% for choice in question.choice_set.all %}

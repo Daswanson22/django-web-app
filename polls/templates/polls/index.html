@@ -1,7 +1,21 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}?{% now 'U' %}">
+
+<a href="{% url 'polls:index' %}">Home</a>
+
+<h1>Polls</h1>
 {% if latest_question_list %}
     <ul>
+        <li>
+            <h3>Question</h3>
+            <h3>Published</h3>
+        </li>
     {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        <li>
+            <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+            <p>{{ question.pub_date }}</p>
+        </li>
     {% endfor %}
     </ul>
 {% else %}
