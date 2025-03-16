@@ -40,6 +40,19 @@ class ResultsView(generic.DetailView):
         """
         return Question.objects.filter(pub_date__lte=timezone.now())
 
+class RecentView(generic.ListView):
+    template_name = "polls/recent.html"
+    context_object_name = "recent_question_list"
+
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published within the past 7 days 
+        and have no choices.
+        """
+        yesterday = timezone.now() - timezone.timedelta(days=7)
+        # Exclude Questions with no choices
+        return Question.objects.filter(pub_date__gte=yesterday).exclude(choice__isnull=True).order_by("-pub_date")[:5]
+
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)

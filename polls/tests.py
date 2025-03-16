@@ -142,7 +142,77 @@ class QuestionIndexViewTests(TestCase):
             [question2, question1],
             ordered=False,
         )
+
+
+class QuestionRecentViewTests(TestCase):
+    def test_no_recent_questions(self):
+        """
+        If no recent questions exist, an appropriate message is displayed.
+        URL: /polls/recent/
+        """
+        response = self.client.get(reverse("polls:recent"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "No polls are available.")
+        self.assertQuerySetEqual(response.context["recent_question_list"], [])
+
+    def test_question_posted_within_7_days(self):
+        """
+        Questions with a pub_date within the last 7 days are displayed on the
+        recent page.
+        URL: /polls/recent/
+        """
+        question = create_question(question_text="What is a test?", days=-5)
+        question.choice_set.create(choice_text="A test is a test.")
+        question.choice_set.create(choice_text="A test is not a test.")
+        response = self.client.get(reverse("polls:recent"))
+        self.assertQuerySetEqual(
+            response.context["recent_question_list"],
+            [question],
+        )
+
+    def test_question_posted_older_than_7_days(self):
+        """
+        Questions with a pub_date older than 7 days are not displayed on the
+        recent page.
+        URL: /polls/recent/
+        """
+        question = create_question(question_text="What is a test?", days=-10)
+        question.choice_set.create(choice_text="A test is a test.")
+        question.choice_set.create(choice_text="A test is not a test.")
+        response = self.client.get(reverse("polls:recent"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "No polls are available.")
+        self.assertQuerySetEqual(response.context["recent_question_list"], [])
     
+    def test_question_but_no_choices(self):
+        """
+        Questions with no choices are not displayed on the recent page.
+        URL: /polls/recent/
+        """
+        question = create_question(question_text="What is a test?", days=-6)
+        question_choice_length = len(question.choice_set.all())
+        if(question_choice_length < 2):
+            question.pub_date = timezone.now() + datetime.timedelta(days=31)
+            question.save()
+        response = self.client.get(reverse("polls:recent"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "No polls are available.")
+        self.assertQuerySetEqual(response.context["recent_question_list"], [])
+
+    def test_question_with_choices(self):
+        """
+        Questions with a pub_date in the past are displayed on the
+        recent page.
+        URL: /polls/recent/
+        """
+        question = create_question(question_text="What is a test?", days=-5)
+        question.choice_set.create(choice_text="A test is a test.")
+        question.choice_set.create(choice_text="A test is not a test.")
+        response = self.client.get(reverse("polls:recent"))
+        self.assertQuerySetEqual(
+            response.context["recent_question_list"],
+            [question],
+        )
 
 class QuestionModelTests(TestCase):
     def test_was_published_recently_with_future_question(self):

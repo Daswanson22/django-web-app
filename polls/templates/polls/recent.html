@@ -11,13 +11,13 @@
         <button>Popular</button>
         <button>Oldest</button>
     </div>
-    {% if latest_question_list %}
+    {% if recent_question_list %}
         <ul>
             <li>
                 <h2>Question</h2>
                 <h2>Published</h2>
             </li>
-        {% for question in latest_question_list %}
+        {% for question in recent_question_list %}
             <li>
                 <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
                 <p>{{ question.pub_date }}</p>
