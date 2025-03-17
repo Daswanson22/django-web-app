@@ -2,14 +2,17 @@
 
 <link rel="stylesheet" href="{% static 'polls/results.css' %}?{% now 'U' %}">
 
-<a href="{% url 'polls:index' %}">Back to polls</a>
-<h1>Results</h1>
-<h2>Question: {{ question.question_text }}</h2>
+<body>
+    <a href="{% url 'polls:index' %}">Back to polls</a>
+    <h1>Results</h1>
+    <h2>Question: {{ question.question_text }}</h2>
+    
+    <ul>
+        {% for choice in question.choice_set.all %}
+        <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{% url 'polls:detail' question.id%}"><button>Vote Again?</button></a>  
 
-<ul>
-    {% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-    {% endfor %}
-</ul>
-
-<a href="{% url 'polls:detail' question.id%}"><button>Vote Again?</button></a>
+</body>
