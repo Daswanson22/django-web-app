@@ -1,0 +1,281 @@
+[
+    {
+        "model": "polls.question",
+        "pk": 1,
+        "fields": {
+            "question_text": "What's your favorite programming language?",
+            "pub_date": "2025-03-14T10:00:00Z",
+            "total_votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 1,
+        "fields": {
+            "question": 1,
+            "choice_text": "Python",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 2,
+        "fields": {
+            "question": 1,
+            "choice_text": "JavaScript",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.question",
+        "pk": 2,
+        "fields": {
+            "question_text": "Which front-end framework do you prefer?",
+            "pub_date": "2025-03-13T09:00:00Z",
+            "total_votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 3,
+        "fields": {
+            "question": 2,
+            "choice_text": "React",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 4,
+        "fields": {
+            "question": 2,
+            "choice_text": "Vue",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 5,
+        "fields": {
+            "question": 2,
+            "choice_text": "Angular",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.question",
+        "pk": 3,
+        "fields": {
+            "question_text": "Preferred database system?",
+            "pub_date": "2025-03-12T15:30:00Z",
+            "total_votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 6,
+        "fields": {
+            "question": 3,
+            "choice_text": "PostgreSQL",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 7,
+        "fields": {
+            "question": 3,
+            "choice_text": "MySQL",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 8,
+        "fields": {
+            "question": 3,
+            "choice_text": "MongoDB",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.question",
+        "pk": 4,
+        "fields": {
+            "question_text": "What's your go-to code editor?",
+            "pub_date": "2025-03-11T11:45:00Z",
+            "total_votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 9,
+        "fields": {
+            "question": 4,
+            "choice_text": "VS Code",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 10,
+        "fields": {
+            "question": 4,
+            "choice_text": "Sublime Text",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 11,
+        "fields": {
+            "question": 4,
+            "choice_text": "Vim",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.question",
+        "pk": 5,
+        "fields": {
+            "question_text": "Do you prefer light or dark mode for coding?",
+            "pub_date": "2025-03-10T08:20:00Z",
+            "total_votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 12,
+        "fields": {
+            "question": 5,
+            "choice_text": "Light Mode",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 13,
+        "fields": {
+            "question": 5,
+            "choice_text": "Dark Mode",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.question",
+        "pk": 6,
+        "fields": {
+            "question_text": "Best OS for development?",
+            "pub_date": "2025-03-09T14:00:00Z",
+            "total_votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 14,
+        "fields": {
+            "question": 6,
+            "choice_text": "Linux",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 15,
+        "fields": {
+            "question": 6,
+            "choice_text": "macOS",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 16,
+        "fields": {
+            "question": 6,
+            "choice_text": "Windows",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.question",
+        "pk": 7,
+        "fields": {
+            "question_text": "How many hours do you code daily?",
+            "pub_date": "2025-03-08T17:30:00Z",
+            "total_votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 17,
+        "fields": {
+            "question": 7,
+            "choice_text": "1-2 hours",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 18,
+        "fields": {
+            "question": 7,
+            "choice_text": "3-5 hours",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 19,
+        "fields": {
+            "question": 7,
+            "choice_text": "6+ hours",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.question",
+        "pk": 8,
+        "fields": {
+            "question_text": "Favorite backend framework?",
+            "pub_date": "2025-03-07T12:00:00Z",
+            "total_votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 20,
+        "fields": {
+            "question": 8,
+            "choice_text": "Django",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 21,
+        "fields": {
+            "question": 8,
+            "choice_text": "Express.js",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 22,
+        "fields": {
+            "question": 8,
+            "choice_text": "Spring Boot",
+            "votes": 0
+        }
+    },
+    {
+        "model": "polls.choice",
+        "pk": 23,
+        "fields": {
+            "question": 8,
+            "choice_text": "Laravel",
+            "votes": 0
+        }
+    }
+]

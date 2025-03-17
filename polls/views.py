@@ -22,6 +22,7 @@ class IndexView (generic.ListView):
 class DetailView(generic.DetailView):
     model = Question
     template_name = "polls/detail.html"
+    context_object_name = "question"
 
     def get_queryset(self):
         """
@@ -33,6 +34,7 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = "polls/results.html"
+    context_object_name = "question"
 
     def get_queryset(self):
         """
@@ -70,8 +72,12 @@ def vote(request, question_id):
         )
     else:
         selected_choice.votes = F("votes") + 1
+        question.total_votes = F("total_votes") + 1
+
+        # Save the updated votes count
+        question.save()
         selected_choice.save()
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
+        # user hits the Back button
         return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))

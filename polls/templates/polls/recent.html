@@ -6,24 +6,34 @@
     <a href="{% url 'marketing:index' %}">Home</a>
 
     <h1>Polls</h1>
-    <div>
-        <a href="{% url 'polls:recent' %}">Recent</a>
-        <button>Popular</button>
-        <button>Oldest</button>
+    <div class="category-buttons">
+        <a href="{% url 'polls:recent' %}" class="selected">Recent</a>
+        <a href="#">Popular</a>
+        <a>Oldest</a>
     </div>
     {% if recent_question_list %}
-        <ul>
-            <li>
-                <h2>Question</h2>
-                <h2>Published</h2>
-            </li>
+        <table>
+            <thead>
+                <th>Question</th>
+                <th>Votes</th>
+                <th>Published</th>
+            </thead>
         {% for question in recent_question_list %}
-            <li>
-                <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
-                <p>{{ question.pub_date }}</p>
-            </li>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+                    </td>
+                    <td>
+                        <p>Votes {{ question.total_votes }} </p>
+                    </td>
+                    <td>
+                        <p>{{ question.pub_date }}</p>
+                    </td>
+                </tr>
+            </tbody>
         {% endfor %}
-        </ul>
+        </table>
     {% else %}
         <p>No polls are available.</p>
     {% endif %}

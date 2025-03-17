@@ -10,6 +10,37 @@ body {
     padding: 20px;
 }
 
+.category-buttons {
+    display: flex;
+    border-bottom: 1px solid #d1d1d6;
+}
+
+.category-buttons a {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+    color: #1c1c1e;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-bottom: none;
+    background-color: #f5f5f5;
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border 0.2s ease;
+}
+
+.category-buttons a:hover {
+    background-color: #e4e4e7;
+}
+
+.category-buttons a.selected {
+    border: 1px solid #1c1c1e;
+    border-bottom: 1px solid #ffffff; /* seamless bottom with container */
+    background-color: #1c1c1e;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+
 div button {
     background-color: black;
     border: none;
@@ -19,55 +50,69 @@ div button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
 }
 
-ul {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    margin-top: 5px;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    color: #1c1c1e;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+    border: 1px solid #d1d1d6;
 }
 
-li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 4px;
-    border-bottom: 1px solid black;
+thead {
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #d1d1d6;
 }
 
-li:first-child {
+thead th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+tbody tr {
+    border-bottom: 1px solid #d1d1d6;
+}
+
+tbody tr:hover {
+    background-color: #f8f9fa; /* Reddit-like hover */
+}
+
+td {
+    padding: 0.5rem 0.75rem;
+    vertical-align: top;
+    color: #1c1c1e;
+}
+
+td a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+td a:hover {
+    text-decoration: underline;
+    color: rgb(22, 126, 121);
+}
+
+.error {
+    color: red;
     font-weight: bold;
 }
 
-li a {
-    color: black;
-    text-decoration: none;
-    padding: 5px 0;
-}
-
-li a:hover {
-    color: purple;
-    text-decoration: underline;
-}
-
-li a:visited {
-    color: rgb(92, 91, 91);
-    text-decoration: none;
-}
-
-li:nth-child(odd) {
-    background-color: lightyellow;
-}
-
-li:nth-child(even) {
-    background-color: white;
-}
-
 p {
-    color: black;
+    margin: 0.25rem 0;
+    color: #4a4a4a;
+}
+
+
+.error {
+    color: red;
     font-style: italic;
-    font-size: 0.7rem;
 }

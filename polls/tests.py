@@ -242,3 +242,27 @@ class QuestionModelTests(TestCase):
         time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
         recent_question = Question(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
+
+    def test_that_poll_choice_count_is_equal_to_total_votes(self):
+        """
+        The poll choice count should be equal to the total votes.
+        """
+        v1 = 2012
+        v2 = 38
+        question = create_question(question_text="What is a test?", days=-30)
+        question.choice_set.create(choice_text="A test is a test.", votes=v1)
+        question.choice_set.create(choice_text="A test is not a test.", votes=v2)
+        question.update_votes()
+        self.assertEqual(question.total_votes, v1+v2)
+
+    def test_that_poll_choice_count_is_not_equal_to_total_votes(self):
+        """
+        The poll choice count should not be equal to the total votes.
+        """
+        v1 = 2012
+        v2 = 38
+        question = create_question(question_text="What is a test?", days=-30)
+        question.choice_set.create(choice_text="A test is a test.", votes=v1)
+        question.choice_set.create(choice_text="A test is not a test.", votes=v2)
+        question.update_votes()
+        self.assertNotEqual(question.total_votes, v1-v2)
