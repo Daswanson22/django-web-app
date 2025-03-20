@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.db.models import F
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.utils import timezone
 
 from .models import Question, Choice
+from .forms import CreateQuestionForm
 # Acts as a controller
 
 class IndexView (generic.ListView):
@@ -54,6 +55,11 @@ class RecentView(generic.ListView):
         yesterday = timezone.now() - timezone.timedelta(days=7)
         # Exclude Questions with no choices
         return Question.objects.filter(pub_date__gte=yesterday).exclude(choice__isnull=True).order_by("-pub_date")[:5]
+
+class CreateView(generic.edit.FormView):
+    template_name = "polls/create_form.html"
+    form_class = CreateQuestionForm
+    success_url = reverse_lazy("polls:index")
 
 
 def vote(request, question_id):

@@ -5,5 +5,8 @@
 <body>
     <h1>{{ title }}</h1>
     <p>{{ content }}</p>
-    <a href="{%  url 'polls:index' %}">View Polls</a>
+    <div>
+        <a href="{%  url 'polls:index' %}">Vote on a Poll</a>
+        <a href="{%  url 'polls:create' %}">Create a Poll</a>
+    </div>
 </body>
